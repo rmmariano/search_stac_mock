@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  bdc-search-stac:
+    build: ./
+    container_name: bdc-search-stac
+    ports:
+      - "5050:5000"
+    restart: always
+    networks:
+      - bdc_net_search_stac
+
+networks:
+  bdc_net_search_stac:
+    driver: bridge
+
