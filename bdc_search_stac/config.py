@@ -1,5 +1,6 @@
 import os
 
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 def get_settings(env):
     return eval(env)
