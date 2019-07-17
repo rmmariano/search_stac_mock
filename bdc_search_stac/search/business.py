@@ -18,5 +18,19 @@ class SearchBusiness():
         return providers
         
     @classmethod
-    def search(cls):
-        return {}
+    def search(cls, providers, bbox, cloud, start_date, last_date, limit_sat=10):
+        # range temporal
+        query = '&time={}T00:00:00Z/{}T23:59:59Z'.format(start_date, last_date)
+        # cloud cover
+        query += '&eo:cloud_cover=0/{}'.format(cloud)
+        # limit
+        query += '&limit={}'.format(limit_sat)
+        
+        result = {}
+        for p in providers.split(','):
+            query_full = 'bbox={}{}'.format(bbox if p == 'KEPLER_STAC' else '[{}]'.format(bbox), query)
+
+            response = SearchServices.search_stac(cls.get_providers()[p], query_full)
+            if response:
+                result[p] = json.loads(response.text)
+        return result

@@ -18,17 +18,21 @@ def valide_bbox(box):
     coordinates = [float(b) for b in list_bbox]
     return coordinates if len(coordinates) == 4 else None
 
-def valide_cover(cover):
-    return float(cover) if float(cover) > 0 and float(cover) <= 100 else None
+def valide_cloud(cloud):
+    return float(cloud) if float(cloud) > 0 and float(cloud) <= 100 else None
+
+def valide_limit(limit):
+    return int(limit) if float(limit) > 0 else None
 
 
 def search():
     return {
         'providers': {"type": "list", "coerce": valide_providers, "empty": False, "required": True},
         'bbox': {"type": "list", "coerce": valide_bbox, "empty": False, "required": True},
-        'cover': {"type": "number", "coerce": valide_cover, "empty": False, "required": True},
+        'cloud': {"type": "number", "coerce": valide_cloud, "empty": False, "required": True},
         'start_date': {"type": "date", "coerce": valide_date, "empty": False, "required": True},
-        'last_date': {"type": "date", "coerce": valide_date, "empty": False, "required": True}
+        'last_date': {"type": "date", "coerce": valide_date, "empty": False, "required": True},
+        'limit_sat': {"type": "number", "coerce": valide_limit, "empty": True, "required": False}
     }
 
 def validate(data, type_schema):

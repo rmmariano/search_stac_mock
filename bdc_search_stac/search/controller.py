@@ -21,7 +21,7 @@ class SearchProviderController(APIResource):
         """
         Search RF in STAC's
         """
-        listRF = SearchBusiness.search()
+        listRF = SearchBusiness.search(**request.args)
         return {
             "providers": listRF
         }
