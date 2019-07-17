@@ -26,11 +26,13 @@ class SearchBusiness():
         # limit
         query += '&limit={}'.format(limit_sat)
         
-        result = {}
+        result_by_provider = {}
+        result_features = []
         for p in providers.split(','):
             query_full = 'bbox={}{}'.format(bbox if p == 'KEPLER_STAC' else '[{}]'.format(bbox), query)
 
             response = SearchServices.search_stac(cls.get_providers()[p], query_full)
             if response:
-                result[p] = json.loads(response.text)
-        return result
+                result_by_provider[p] = json.loads(response.text)
+                result_features += json.loads(response.text)['features']
+        return result_features
