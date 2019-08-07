@@ -1,13 +1,7 @@
 {
-  "DEVELOPMENT_SEED_STAC": {
-    "url": "https://sat-api.developmentseed.org/stac/search",
-    "urlr": "https://sat-api.developmentseed.org/stac/search",
-    "type":"dev_stac"
-  },
-  "KEPLER_STAC": {
-    "url": "https://stac.amskepler.com/stac/search",
-    "urlr": "https://stac.amskepler.com/stac/search",
+  "BDC_STAC": {
+    "url": "http://cbers1.dpi.inpe.br:5051/stac/search",
+    "urlr": "http://cbers1.dpi.inpe.br:5051/stac/search",
     "type":"dev_stac"
   }
 }
-  

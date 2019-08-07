@@ -11,20 +11,17 @@ from bdc_core.utils.flask import APIResource
 api = ns
 
 @api.route('/')
-class SearchProviderController(APIResource):
+class SearchController(APIResource):
 
     def get(self):
         data, status = validate(request.args.to_dict(flat=True), 'search')
         if status is False:
             raise BadRequest(json.dumps(data))
-        
+
         """
         Search RF in STAC's
         """
-        listRF = SearchBusiness.search(**request.args)
-        return {
-            "providers": listRF
-        }
+        return SearchBusiness.search(**request.args)
 
 @api.route('/providers')
 class SearchProviderController(APIResource):
@@ -34,7 +31,7 @@ class SearchProviderController(APIResource):
         List of STAC providers
         """
         providers = SearchBusiness.get_providers()
-        
+
         return {
             "providers": providers
         }
