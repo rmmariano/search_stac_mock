@@ -1,7 +1,0 @@
-{
-  "BDC_STAC": {
-    "url": "http://cbers1.dpi.inpe.br:5051/stac/search",
-    "urlr": "http://cbers1.dpi.inpe.br:5051/stac/search",
-    "type":"dev_stac"
-  }
-}
